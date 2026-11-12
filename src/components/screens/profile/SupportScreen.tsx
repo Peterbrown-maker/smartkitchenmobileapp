@@ -7,8 +7,8 @@ import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } 
 
 const FAQ = [
   {
-    q: "When is Mogodu Monday?",
-    a: "Our traditional meals (mogodu, tlhogo, tlhakwana, chicken feet, masonja, skop and marapo) are served on Mondays. Ask your waitron for today's selection.",
+    q: "What is Monate Sunday?",
+    a: "Every Sunday from 12:00 to 18:00: a wrap combo and a cocktail for R200, with DJs on the decks. Book a table for your crew.",
   },
   {
     q: "What are your opening hours?",
@@ -50,14 +50,14 @@ export const SupportScreen = ({ onBack }: SupportScreenProps) => {
       title: "Get directions",
       hint: address,
       onPress: () =>
-        open(`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`, address),
+        open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`The Butcher Monate Corner, ${address}`)}`, address),
     },
-    // Add Be Lounge's Instagram / Facebook / website here once available.
+    // Add The Butcher's Instagram / Facebook / website here once available.
   ];
 
   return (
     <View style={styles.container}>
-      <ScreenHeader title="Help & support" subtitle="Good memories are made here" onBack={onBack} />
+      <ScreenHeader title="Help & support" subtitle="Meat & Shisanyama · Monate Corner" onBack={onBack} />
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.group}>
           {channels.map(({ Icon, title, hint, onPress }, i) => (

@@ -46,17 +46,17 @@ import { useNotifications } from "../../services/notifications";
 import { MACNOSE_INFO, MACNOSE_RESTAURANT } from "../../services/restaurants";
 import { ProfileAvatar } from "../ProfileAvatar";
 
-// Be Lounge palette (from the logo): white canvas, ink accent, steel for small accent text.
+// The Butcher palette (from the logo): white canvas, black type, shisanyama red accent.
 const C = {
   bg: "#FFFFFF",
-  surface: "#F3F4F6",
+  surface: "#F5F5F5",
   surface2: "#FFFFFF",
-  border: "#E2E4E8",
-  text: "#03060E",
-  muted: "#6B7079",
-  ember: "#0B0F19",
-  emberText: "#4B515C",
-  emberSoft: "rgba(11,15,25,0.07)",
+  border: "#E5E5E5",
+  text: "#0A0A0A",
+  muted: "#737373",
+  ember: "#D20A0A",
+  emberText: "#A80808",
+  emberSoft: "rgba(210,10,10,0.09)",
   onImage: "#FFFFFF", // text sitting on photos
 };
 
@@ -72,12 +72,12 @@ export interface HomeCartItem {
 
 // Hand-picked for "Start with these" on the home screen.
 const FEATURED_IDS = [
-  "specials-full-chicken-fries-2l-coke",
-  "traditional-ox-tripe-mogodu",
+  "platters-sharing-platter",
   "grills-smoked-ribs-wings",
-  "mains-oxtail",
   "platters-macnose-shisanyama-platter",
-  "light-macnose-champagne-oysters",
+  "grills-chicken-wings",
+  "grills-cheeseburger-and-chips",
+  "mains-oxtail",
 ];
 
 /** Today's opening hours, from MACNOSE_INFO.hours (Mon-Thu, Fri-Sat, Sun). */
@@ -237,8 +237,8 @@ export const HomeScreen = ({
             ? "Turn on location to deliver"
             : "Tap to use my location"
       : mode === "takeaway"
-        ? "Collect at Be Lounge · ready in 20 min"
-        : "Grab a table at Be Lounge";
+        ? "Collect at The Butcher · ready in 20 min"
+        : "Grab a table at The Butcher";
 
   const renderMenuRow = (item: MacnoseMenuItem) => {
     const qty = cart[item.id] || 0;
@@ -333,7 +333,7 @@ export const HomeScreen = ({
         <Search size={18} color={C.muted} />
         <TextInput
           style={styles.searchInput}
-          placeholder="Search mogodu, grills, drinks & more"
+          placeholder="Search wings, ribs, platters & more"
           placeholderTextColor={C.muted}
           value={searchText}
           onChangeText={setSearchText}
@@ -387,7 +387,7 @@ export const HomeScreen = ({
             {/* Hero */}
             <View style={styles.heroWrap}>
               <Image
-                source={require("../../assets/macnose/food.jpg")}
+                source={require("../../assets/butcher/table_spread.jpg")}
                 style={styles.heroImage}
               />
               <LinearGradient
@@ -400,26 +400,26 @@ export const HomeScreen = ({
               />
               <View style={styles.heroContent}>
                 <Image
-                  source={require("../../assets/belounge/logo.png")}
+                  source={require("../../assets/butcher/logo.png")}
                   style={styles.heroLogo}
                   resizeMode="contain"
                 />
                 <Text style={styles.heroTitle}>
-                  Good memories are made here.
+                  Meat & shisanyama, done right.
                 </Text>
                 <Text style={styles.heroSub}>
-                  South African classics, grills, seafood and premium drinks.
-                  Order it to your door, or come through to the lounge.
+                  Flame grilled meat, sharing platters and ice-cold drinks.
+                  Order it to your door, or come through to Monate Corner.
                 </Text>
                 <View style={styles.heroCtas}>
                   <TouchableOpacity
                     style={styles.ctaPrimary}
                     onPress={() => {
                       setMode("delivery");
-                      setSelectedCategory("specials");
+                      setSelectedCategory("grills");
                     }}
                   >
-                    <Flame size={16} color={C.ember} />
+                    <Flame size={16} color="#FFF" />
                     <Text style={styles.ctaPrimaryText}>Order now</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -569,7 +569,7 @@ export const HomeScreen = ({
                           <Text style={styles.promoSub} numberOfLines={2}>{promo.sub}</Text>
                           <View style={styles.promoCta}>
                             <Text style={styles.promoCtaText}>{promo.cta}</Text>
-                            <ChevronRight size={16} color={C.ember} />
+                            <ChevronRight size={16} color="#FFF" />
                           </View>
                         </View>
                       </TouchableOpacity>
@@ -597,12 +597,12 @@ export const HomeScreen = ({
             <View style={styles.section}>
               <View style={styles.visitCard}>
                 <Image
-                  source={require("../../assets/macnose/interior2.jpg")}
+                  source={require("../../assets/butcher/entrance_at_night.jpg")}
                   style={styles.visitImage}
                 />
                 <View style={styles.visitBody}>
                   <Text style={styles.visitKicker}>
-                    LOUNGE & RESTAURANT
+                    MONATE CORNER · SOSHANGUVE
                   </Text>
                   <Text style={styles.visitTitle}>
                     “{MACNOSE_INFO.tagline}”
@@ -754,12 +754,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    backgroundColor: "#FFFFFF", // white on the dark hero, like the logo
+    backgroundColor: C.ember,
     paddingHorizontal: 16,
     height: 44,
     borderRadius: 999,
   },
-  ctaPrimaryText: { color: C.ember, fontWeight: "700", fontSize: 14 },
+  ctaPrimaryText: { color: "#FFF", fontWeight: "700", fontSize: 14 },
   ctaGhost: {
     flexDirection: "row",
     alignItems: "center",
@@ -885,9 +885,9 @@ const styles = StyleSheet.create({
   promoSub: { color: "#E5E5E5", fontSize: 13, marginTop: 4, lineHeight: 18 },
   promoCta: {
     flexDirection: "row", alignItems: "center", alignSelf: "flex-start", marginTop: 10,
-    backgroundColor: "#FFFFFF", borderRadius: 999, paddingLeft: 12, paddingRight: 8, height: 32,
+    backgroundColor: C.ember, borderRadius: 999, paddingLeft: 12, paddingRight: 8, height: 32,
   },
-  promoCtaText: { color: C.ember, fontWeight: "700", fontSize: 13 },
+  promoCtaText: { color: "#FFF", fontWeight: "700", fontSize: 13 },
   dots: { flexDirection: "row", justifyContent: "center", gap: 6, marginTop: 10 },
   dotPill: { width: 6, height: 6, borderRadius: 3, backgroundColor: C.border },
   dotPillActive: { width: 18, backgroundColor: C.ember },

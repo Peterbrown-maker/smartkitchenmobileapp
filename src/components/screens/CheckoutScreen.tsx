@@ -143,7 +143,7 @@ export const CheckoutScreen: React.FC<CheckoutProps> = ({
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : undefined}>
-      <ScreenHeader title={tableOnly ? "Book a table" : "Checkout"} subtitle="Be Lounge" onBack={onBack} />
+      <ScreenHeader title={tableOnly ? "Book a table" : "Checkout"} subtitle="The Butcher" onBack={onBack} />
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         {/* Mode */}
@@ -222,7 +222,7 @@ export const CheckoutScreen: React.FC<CheckoutProps> = ({
                 <Store size={18} color={T.emberText} />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.locationLabel}>Be Lounge</Text>
+                <Text style={styles.locationLabel}>The Butcher</Text>
                 <Text style={styles.locationAddress}>Ready in about 20 min</Text>
               </View>
             </View>

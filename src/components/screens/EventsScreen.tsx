@@ -52,7 +52,7 @@ export const EventsScreen = ({ onBack, initialEventId, onBookTable }: EventsScre
 
   return (
     <View style={styles.container}>
-      <ScreenHeader title="What's on" subtitle="Live at Be Lounge" onBack={onBack} />
+      <ScreenHeader title="What's on" subtitle="Live at The Butcher" onBack={onBack} />
       {events.length === 0 ? (
         <View style={styles.empty}>
           <View style={styles.emptyIcon}>
@@ -91,7 +91,7 @@ const EventCard = ({ event, onPress }: { event: MacnoseEvent; onPress: () => voi
         )}
       </View>
       <View style={styles.cardBody}>
-        <Text style={styles.cardGenre}>{event.genre.toUpperCase()}</Text>
+        <Text style={styles.cardGenre}>{event.recurring ? `${event.recurring.toUpperCase()} · ` : ""}{event.genre.toUpperCase()}</Text>
         <Text style={styles.cardTitle}>{event.artist}</Text>
         <Text style={styles.cardSub}>
           {event.title} · {event.startTime} – {event.endTime} · {formatEntry(event)}
@@ -125,16 +125,16 @@ const EventDetail = ({
           <Image source={event.image} style={styles.heroImage} />
           <LinearGradient colors={["transparent", "rgba(0,0,0,0.75)"]} style={StyleSheet.absoluteFill} />
           <View style={styles.heroText}>
-            <Text style={styles.heroGenre}>{event.genre.toUpperCase()}</Text>
+            <Text style={styles.heroGenre}>{event.recurring ? `${event.recurring.toUpperCase()} · ` : ""}{event.genre.toUpperCase()}</Text>
             <Text style={styles.heroTitle}>{event.artist}</Text>
           </View>
         </View>
 
         <View style={styles.body}>
           <View style={styles.facts}>
-            <Fact Icon={CalendarDays} text={formatEventWhen(event)} />
+            <Fact Icon={CalendarDays} text={event.recurring ? `${event.recurring} · next: ${formatEventWhen(event)}` : formatEventWhen(event)} />
             <Fact Icon={Ticket} text={formatEntry(event)} />
-            <Fact Icon={MapPin} text={`Be Lounge, ${MACNOSE_RESTAURANT.address}`} />
+            <Fact Icon={MapPin} text={`The Butcher, ${MACNOSE_RESTAURANT.address}`} />
           </View>
 
           <Text style={styles.description}>{event.description}</Text>

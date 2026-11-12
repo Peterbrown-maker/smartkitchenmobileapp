@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Animated, Easing, Image, StatusBar, StyleSheet, Text, View } from "react-native";
 
-// Ink + silver, from the Be Lounge logo.
+// Black + flame, from The Butcher logo.
 const C = {
-  bg: "#03060E",
+  bg: "#0A0A0A",
   muted: "#A3A3A3",
-  ember: "#C9CED6",
-  track: "#1C212C",
+  ember: "#FFA41B",
+  track: "#262626",
 };
 
 const DURATION = 2400;
@@ -48,14 +48,14 @@ export const SplashScreen = ({ onComplete }: SplashScreenProps) => {
       <StatusBar barStyle="light-content" backgroundColor={C.bg} />
 
       <Animated.View style={{ opacity: logoOpacity, transform: [{ scale: logoScale }] }}>
-        <Image source={require("../../assets/belounge/logo.png")} style={styles.emblem} resizeMode="contain" />
+        <Image source={require("../../assets/butcher/logo.png")} style={styles.emblem} resizeMode="contain" />
       </Animated.View>
 
       <View style={styles.footer}>
         <View style={styles.track}>
           <Animated.View style={[styles.bar, { width: barWidth }]} />
         </View>
-        <Text style={styles.footerText}>Good food. Good vibes…</Text>
+        <Text style={styles.footerText}>Meat & Shisanyama…</Text>
       </View>
     </Animated.View>
   );

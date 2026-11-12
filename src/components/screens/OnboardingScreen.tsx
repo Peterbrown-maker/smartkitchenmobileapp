@@ -17,13 +17,13 @@ const { width, height } = Dimensions.get("window");
 
 const C = {
   bg: "#FFFFFF",
-  surface: "#F3F4F6",
-  border: "#E2E4E8",
-  text: "#03060E",
-  muted: "#6B7079",
-  ember: "#0B0F19",
-  emberText: "#4B515C",
-  emberSoft: "rgba(11,15,25,0.07)",
+  surface: "#F5F5F5",
+  border: "#E5E5E5",
+  text: "#0A0A0A",
+  muted: "#737373",
+  ember: "#D20A0A",
+  emberText: "#A80808",
+  emberSoft: "rgba(210,10,10,0.09)",
 };
 
 interface OnboardingScreenProps {
@@ -46,24 +46,24 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    kicker: "MOGODU MONDAY",
-    KickerIcon: Utensils,
-    title: "Proudly South\nAfrican",
-    description: "Mogodu, tlhogo, tlhakwana and more every Monday, with pap, ting, samp or dumpling and 2 veggies.",
-    image: require("../../assets/macnose/traditional_food.jpg"),
+    kicker: "MEAT & SHISANYAMA",
+    KickerIcon: Flame,
+    title: "Fresh off\nthe fire",
+    description: "Flame grilled chicken, wings, wors, steak, lamb chops and sticky ribs, served with pap or chips.",
+    image: require("../../assets/butcher/mixed_grill_platter.jpg"),
     chips: [
-      { label: "Traditional", Icon: Utensils },
-      { label: "Cooked meals", Icon: Flame },
+      { label: "Shisanyama", Icon: Flame },
+      { label: "Platters", Icon: Utensils },
     ],
   },
   {
-    kicker: "GRILLS & BUBBLES",
-    KickerIcon: Flame,
-    title: "Grills, seafood\nand fine wines",
-    description: "Flame grilled wings, steaks, platters and oysters, with superior wines, premium bottles and feel good music.",
-    image: require("../../assets/macnose/food_drink.jpg"),
+    kicker: "MONATE CORNER",
+    KickerIcon: CalendarDays,
+    title: "Good food,\ngood music",
+    description: "Cocktails, ice-cold drinks and DJs on the decks. Book a table for your crew and make it a monate one.",
+    image: require("../../assets/butcher/monate_corner_crowd.jpg"),
     chips: [
-      { label: "Grills", Icon: Flame },
+      { label: "Live DJs", Icon: Flame },
       { label: "Book a table", Icon: CalendarDays },
     ],
   },
@@ -72,7 +72,7 @@ const SLIDES: Slide[] = [
     KickerIcon: LocateFixed,
     title: "Delivered to\nwhere you are",
     description: "We use your live location, so there's no address to type. Or collect it, or come through and eat in.",
-    image: require("../../assets/macnose/food.jpg"),
+    image: require("../../assets/butcher/table_spread.jpg"),
     chips: [
       { label: "Delivery", Icon: Zap },
       { label: "Collect", Icon: ShoppingBag },
@@ -134,7 +134,7 @@ export const OnboardingScreen = ({ onComplete }: OnboardingScreenProps) => {
 
       <View style={styles.header}>
         <View style={styles.logoTile}>
-          <Image source={require("../../assets/belounge/logo.png")} style={styles.logo} resizeMode="contain" />
+          <Image source={require("../../assets/butcher/logo.png")} style={styles.logo} resizeMode="contain" />
         </View>
         {!isLast && (
           <TouchableOpacity onPress={onComplete} hitSlop={10} accessibilityLabel="Skip introduction">
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     minHeight: 52,
   },
-  logoTile: { backgroundColor: "#03060E", borderRadius: 12, overflow: "hidden" },
+  logoTile: { backgroundColor: "#FFFFFF", borderRadius: 12, overflow: "hidden" },
   logo: { width: 52, height: 52 },
   skip: { color: C.muted, fontSize: 15, fontWeight: "600" },
 

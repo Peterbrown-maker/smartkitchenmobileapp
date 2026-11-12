@@ -48,30 +48,31 @@ const NOW = new Date().toISOString();
 
 export const MACNOSE_RESTAURANT: Restaurant = {
   id: 'macnose',
-  name: 'Be Lounge',
-  description: 'Lounge & restaurant in Soshanguve. South African classics, grills, seafood, platters and drinks.',
+  name: 'The Butcher',
+  description: 'Meat & shisanyama at Monate Corner, Soshanguve. Flame grilled meat, sharing platters, cocktails and DJs.',
   image: '',
   images: [],
-  // Map pin from Be Lounge's Bing Maps listing. TODO: confirm the street address.
-  address: 'Soshanguve, Pretoria',
+  // Address from The Butcher's Monate Sunday poster.
+  // TODO: the map pin below is approximate (Soshanguve); set The Butcher's exact coordinates.
+  address: '342 Block FF, Soshanguve',
   latitude: -25.513655,
   longitude: 28.108461,
   rating: 0,
   delivery_time: '25-35 min',
   delivery_fee: 15,
   is_open: true,
-  category: 'Lounge & Restaurant',
-  popular_food: 'Mogodu Monday',
-  emoji: '🍽️',
+  category: 'Meat & Shisanyama',
+  popular_food: 'Shisanyama platters',
+  emoji: '🔥',
   created_at: NOW,
   updated_at: NOW,
 };
 
-/** Be Lounge venue details. */
+/** The Butcher · Monate Corner venue details. */
 export const MACNOSE_INFO = {
-  tagline: 'Good food. Good vibes.',
+  tagline: 'Meat & Shisanyama',
   about:
-    'Our extensive menu offers a huge variety of South African dishes specializing in African cuisine (e.g. Ox Tripe), seafood options (e.g. Oysters) & quality meat (e.g. Steak). Superior wines, premium bottles, bubbles & feel good music makes for a unique dining experience.',
+    'Meat & shisanyama at Monate Corner: flame grilled chicken, wings, wors, steak, lamb chops and ribs, sharing platters, cocktails and DJs on the decks.',
   promise:
     'Good food takes time to prepare. Our food is freshly prepared to order. If you are in a hurry, have any allergies or queries, please bring it to our attention and we will do our utmost to accommodate you where possible.',
   hours: [
@@ -105,7 +106,7 @@ class RestaurantsService {
     return RESTAURANTS.find((r) => r.id === restaurantId) || MACNOSE_RESTAURANT;
   }
 
-  // Single-restaurant app: every restaurant id gets the Be Lounge menu.
+  // Single-restaurant app: every restaurant id gets the The Butcher menu.
   async getRestaurantMenu(_restaurantId: string): Promise<MenuItem[]> {
     return MENU;
   }

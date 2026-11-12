@@ -3,7 +3,7 @@
 // app is opened on the event day. Read state and reminders persist in AsyncStorage.
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { MACNOSE_EVENTS, formatEventWhen, isTonight } from "../data/macnoseEvents";
+import { MACNOSE_EVENTS, NEXT_MONATE_SUNDAY_ID, formatEventWhen, isTonight } from "../data/macnoseEvents";
 
 export type NotificationKind = "order" | "delivery" | "event" | "deal";
 
@@ -25,31 +25,23 @@ const KEY_REMINDERS = "events:reminders";
 
 const at = (iso: string) => new Date(iso).getTime();
 
-// Announcements Be Lounge would send (prototype content).
+// Announcements The Butcher would send (prototype content).
 const SEED: AppNotification[] = [
   {
     id: "welcome",
     kind: "event",
-    title: "Welcome to Be Lounge",
-    message: "Good food takes time to prepare. Good memories are made here. Book a table and come through.",
+    title: "Welcome to The Butcher",
+    message: "Meat & shisanyama, fresh off the fire. Book a table and come through to Monate Corner.",
     createdAt: at("2026-11-01T10:00:00+02:00"),
   },
-  ...MACNOSE_EVENTS.map((e, i) => ({
+  ...MACNOSE_EVENTS.filter((e) => !e.recurring || e.id === NEXT_MONATE_SUNDAY_ID).map((e, i) => ({
     id: `announce-${e.id}`,
     kind: "event" as const,
-    title: `${e.artist} live at Be Lounge`,
+    title: `${e.artist} live at The Butcher`,
     message: `${e.title}: ${formatEventWhen(e)}. Tap to see details and book your table.`,
     createdAt: at("2026-11-10T12:00:00+02:00") + i * 3600 * 1000,
     eventId: e.id,
   })),
-  {
-    id: "deal-midweek",
-    kind: "deal",
-    title: "Midweek specials are on",
-    message: "Tue–Thu: full chicken, fries & 2L Coke R160, or a large pizza & 6 KIX R250.",
-    createdAt: at("2026-11-11T09:00:00+02:00"),
-    categoryId: "specials",
-  },
 ];
 
 // ----- tiny shared store -----
@@ -97,8 +89,8 @@ function ensureLoaded() {
               addOnce({
                 id: `tonight-${e.id}`,
                 kind: "event",
-                title: `Tonight: ${e.artist} at Be Lounge`,
-                message: `${e.title} starts at ${e.startTime}. See you at Be Lounge!`,
+                title: `Tonight: ${e.artist} at The Butcher`,
+                message: `${e.title} starts at ${e.startTime}. See you at The Butcher!`,
                 createdAt: Date.now(),
                 eventId: e.id,
               }) || changed;
@@ -170,7 +162,7 @@ export function useEventReminder(eventId: string): [boolean, () => void] {
         id: `reminder-${eventId}-${Date.now()}`,
         kind: "event",
         title: `Reminder set: ${e.artist}`,
-        message: `We'll remind you on ${formatEventWhen(e)}. ${e.title} at Be Lounge.`,
+        message: `We'll remind you on ${formatEventWhen(e)}. ${e.title} at The Butcher.`,
         createdAt: Date.now(),
         eventId,
       });
